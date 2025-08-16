@@ -1,6 +1,6 @@
 import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth"
 import { useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { app } from "../config/firebase"
 import { toast } from "react-toastify"
 
@@ -10,11 +10,13 @@ const Signin = () => {
     const [input, setInput] = useState({
         email: "", password: ""
     })
+    const navigate = useNavigate()
     const handleSignIn = async (e) => {
         e.preventDefault()
         try {
             await signInWithEmailAndPassword(auth, input.email, input.password)
             toast.success("User Signin Successfully")
+            navigate("/dashboard")
         } catch (error) {
             toast.error(error.code)
         }
@@ -29,6 +31,7 @@ const Signin = () => {
         try {
             await signInWithPopup(auth, provider)
             toast.success("User Signin Successfully")
+            navigate("/dashboard")
         } catch (error) {
             toast.error(error.code)
         }
