@@ -45,7 +45,7 @@ const Signup = () => {
     return (
         <>
             <section className="bg-[url('/Background.png')] h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center p-4 relative">
-                <div className="flex flex-col md:flex-row rounded-2xl overflow-hidd-lg w-full max-w-[1050px]">
+                <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden w-full max-w-[1050px] mt-20">
 
                     <div className="w-full md:w-5/12 p-6 md:p-8 bg-[#084b3e]">
                         <div className="flex flex-col justify-between h-full md:h-[650px]">
