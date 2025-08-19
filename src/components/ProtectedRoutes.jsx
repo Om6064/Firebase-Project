@@ -23,7 +23,7 @@ const ProtectedRoutes = ({ Component }) => {
         validation()
     }, [])
 
-    // while checking, render nothing (or a loader)
+
     if (isAuthenticated === null) return null  
 
     return <Component /> 

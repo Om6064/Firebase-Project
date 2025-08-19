@@ -79,7 +79,7 @@ const Editproduct = () => {
     <section className="bg-[url('/Background.png')] min-h-screen bg-no-repeat bg-cover bg-center flex items-center justify-center p-4 relative pt-[100px]">
       <div className="flex flex-col md:flex-row rounded-2xl overflow-hidden w-full max-w-[1050px] shadow-lg">
 
-        {/* Left Side */}
+     
         <div className="w-full md:w-5/12 p-6 md:p-8 bg-[#084b3e] flex flex-col justify-between">
           <img src="/logo.png" alt="logo" className="w-32" />
           <div className="text-[#f9e2ba] text-2xl md:text-4xl mt-6">
@@ -87,14 +87,14 @@ const Editproduct = () => {
           </div>
         </div>
 
-        {/* Right Side Form */}
+       
         <div className="w-full md:w-7/12 p-6 md:p-10 text-xl md:text-2xl bg-white text-[#232323] flex flex-col justify-center">
           <p className="mb-6">
             Let’s update your <br /> product details
           </p>
 
           <form onSubmit={handleSubmit} className="w-full max-w-md">
-            {/* Name */}
+            
             <div className="relative z-0 w-full group my-6 md:my-10">
               <input
                 type="text"
@@ -119,7 +119,7 @@ const Editproduct = () => {
               {error.name && <p className="text-red-500 text-xs mt-1">{error.name}</p>}
             </div>
 
-            {/* Color */}
+            
             <div className="relative z-0 w-full mb-2 group my-6 md:my-10">
               <span className="block mb-2 text-sm font-medium text-gray-500">Color</span>
               <div className="flex items-center gap-6">
@@ -140,7 +140,7 @@ const Editproduct = () => {
               {error.color && <p className="text-red-500 text-xs mt-1">{error.color}</p>}
             </div>
 
-            {/* Category */}
+            
             <div className="relative z-0 w-full mb-2 group my-6 md:my-10">
               <select
                 id="category"
@@ -168,7 +168,7 @@ const Editproduct = () => {
               {error.category && <p className="text-red-500 text-xs mt-1">{error.category}</p>}
             </div>
 
-            {/* Price */}
+            
             <div className="relative z-0 w-full mb-2 group my-6 md:my-10">
               <input
                 type="number"

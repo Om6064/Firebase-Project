@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useEffect, useState } from "react"
+import {  useState } from "react"
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth"
 import { app } from "../config/firebase"
 import { toast } from "react-toastify"
