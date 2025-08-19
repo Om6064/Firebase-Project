@@ -54,7 +54,7 @@ const Signin = () => {
                     </div>
 
                     <div className="w-full md:w-7/12 p-4 sm:p-6 md:p-10 text-lg sm:text-2xl md:text-4xl bg-white text-[#232323]">
-                        <div className="leading-snug">
+                        <div className="leading-snug font-semibold">
                             Let’s get started <br />
                             with a few simple steps
                         </div>
