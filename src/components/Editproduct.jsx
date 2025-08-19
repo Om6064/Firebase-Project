@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { db } from "../config/firebase"; 
+import { db } from "../config/firebase";
 import { collection, getDocs, updateDoc, doc } from "firebase/firestore";
+import { toast } from "react-toastify";
 
 const Editproduct = () => {
   const [input, setInput] = useState({
@@ -20,8 +21,7 @@ const Editproduct = () => {
       try {
         const querySnapshot = await getDocs(collection(db, "Products"));
         const allProducts = querySnapshot.docs.map((d) => ({ id: d.id, ...d.data() }));
-        
-        // use find() to locate product by id
+
         const productToEdit = allProducts.find((p) => p.id === id);
         if (productToEdit) {
           setInput({
@@ -50,7 +50,7 @@ const Editproduct = () => {
     if (input.name.trim() === "") tempObj.name = "Product Name is required";
     if (input.color.trim() === "") tempObj.color = "Color is required";
     if (input.category.trim() === "") tempObj.category = "Category is required";
-    if (input.price.trim() === "") {
+    if (String(input.price).trim() === "") {
       tempObj.price = "Price is required";
     } else if (Number(input.price) <= 0) {
       tempObj.price = "Price must be greater than 0";
@@ -68,6 +68,7 @@ const Editproduct = () => {
           price: Number(input.price),
         });
         navigate("/dashboard");
+        toast.success("Product Updated Successfully")
       } catch (err) {
         console.error("Error updating product:", err);
       }
