@@ -1,32 +1,39 @@
-import { getAuth, onAuthStateChanged } from "firebase/auth"
-import { app } from "../config/firebase"
-import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { app } from '../config/firebase';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const ProtectedRoutes = ({ Component }) => {
-    const navigate = useNavigate()
-    const auth = getAuth(app)
-    const [isAuthenticated, setIsAuthenticated] = useState(null)
 
-    const validation = () => {
-        let res = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setIsAuthenticated(true)
-            } else {
-                setIsAuthenticated(false)
-                navigate("/signin")
-            }
-        })
-    }
+const useAuthentication = () => {
+    const [isAuthenticated, setIsAuthenticated] = useState(null);
+    const auth = getAuth(app);
 
     useEffect(() => {
-        validation()
-    }, [])
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setIsAuthenticated(!!user); 
+        });
+        return () => unsubscribe(); 
+    }, [auth]);
+
+    return isAuthenticated;
+};
 
 
-    if (isAuthenticated === null) return null  
+const ProtectedRoutes = ({ Component }) => {
+    const navigate = useNavigate();
+    const isAuthenticated = useAuthentication();
 
-    return <Component /> 
-}
+    useEffect(() => {
+        if (isAuthenticated === false) {
+            navigate('/signin');
+        }
+    }, [isAuthenticated]);
 
-export default ProtectedRoutes
+    if (isAuthenticated === null) {
+        return null;
+    }
+
+    return <Component />;
+};
+
+export default ProtectedRoutes;

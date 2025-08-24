@@ -18,7 +18,9 @@ const Signin = () => {
             toast.success("User Signin Successfully")
             navigate("/dashboard")
         } catch (error) {
-            toast.error(error.code)
+            if (error.code == "auth/invalid-credential") {
+                toast.error("invalid-credential")
+            }
         }
         setInput({
             email: "", password: "", compassword: ""
@@ -33,7 +35,7 @@ const Signin = () => {
             toast.success("User Signin Successfully")
             navigate("/dashboard")
         } catch (error) {
-            toast.error(error.code)
+            toast.error("Something Went Wrong")
         }
     }
 
